@@ -8,9 +8,14 @@
 </head>
 <body>
 
-  <% if is_logged_in? %>
-    <%= get_current_user[:email] %> - <%= session[:user_id] %>
+  <% if logged_in? %>
+    <%= get_current_seller[:email] %> - <%= session[:user_id] %>
   <% end %>
+
+  <nav>
+    <a href="/">home</a>
+    <a href="/markets">markets</a>
+  </nav>
   
   <%= yield %>
 

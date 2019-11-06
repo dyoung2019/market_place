@@ -3,15 +3,15 @@
 <a href="/markets">Markets</a>
 
 <h2>Sellers</h2>
-
-<a href="/sellers/signup">Signup</a>
-
-<a href="/sellers/login">Login</a>
-
+<% if logged_in? %>
 <form action="/sellers/login" method="post">
   <input type="hidden" name="_method" value="delete">
   <button>Logout</button>
 </form>
+<% else %>
+<a href="/sellers/signup">Signup</a>
+<a href="/sellers/login">Login</a>
+<% end %>
 
 <%# DEBUG ONLY - REMOVE LATER %>
 <% @sellers.each do | seller | %>

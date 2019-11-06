@@ -16,26 +16,28 @@ get '/sellers/login' do
   erb :'sellers/login'
 end
 
-def retry_user_login()
-  @error_message = 'Cannot login with email / password combination' 
-  erb :'sellers/login'
+post '/sellers/login' do
+  db_record = find_seller_by_email(params[:email])
+
+  # bcrypt on db password 
+  password_accepted = !!db_record && BCrypt::Password.new(db_record[:password_digest]) == params[:password]
+
+  if password_accepted 
+    session[:user_id] = db_record[:seller_id]
+    redirect '/'
+    # return 'password YES'
+  else
+    @error_message = 'Cannot login with email / password combination' 
+    erb :'sellers/login'
+    # return 'password NOPE'
+  end 
 end
 
-post '/sellers/login' do
-  seller = find_seller_by_email(params[:email])
-
-  if !seller
-    retry_user_login()
-  else
-    password_digest = BCrypt::Password.create(params[:password])
-
-    if password_digest == seller[:password_digest]
-      session[:user_id] = seller[:seller_id]
-      return '/'
-    else
-      retry_user_login()
-    end
+delete '/sellers/login' do
+  if logged_in?
+    session[:user_id] = nil
   end
+  redirect '/sellers/login'
 end
 
 get '/sellers/:seller_id' do
