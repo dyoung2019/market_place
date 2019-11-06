@@ -27,6 +27,7 @@ end
 require_relative 'controllers/sellers.rb'
 require_relative 'controllers/markets.rb'
 require_relative 'controllers/products.rb'
+require_relative 'controllers/market_dates.rb'
 
 
 

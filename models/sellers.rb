@@ -1,6 +1,6 @@
 require 'bcrypt'
 
-require_relative 'utility.rb'
+require_relative 'utility'
 
 def logged_in? 
   !!get_current_seller()

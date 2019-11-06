@@ -31,18 +31,19 @@ CREATE TABLE products (
 );
 
 CREATE TABLE stalls (
-  id SERIAL primary key,
+  stall_id SERIAL primary key,
   market_date_id INTEGER,
   seller_id INTEGER,
   stall_name text,
   stall_location text,
   website text,
   opening_time timestamp,
-  closing_time timestamp,
+  closing_time timestamp
 );
 
-CREATE TABLE inventory (
-  id SERIAL primary key,
+CREATE TABLE sale_items (
+  item_id SERIAL primary key,
+  stall_id INTEGER,
   product_id INTEGER,
   quantity INTEGER,
   notes TEXT,
@@ -87,3 +88,5 @@ BEGIN
 
   RAISE NOTICE 'no of records %', r_count;
 END$$;
+
+SELECT i.*, s.stall_name, p.product_name  from sale_items i inner join stalls s on s.stall_id = i.stall_id inner join products p on p.product_id = i.product_id where i.market_date_id = $1::int;

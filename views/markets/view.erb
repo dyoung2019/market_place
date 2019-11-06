@@ -1,0 +1,8 @@
+<h1><%= @market[:market_name] %></h1>
+<h2><%= @market[:market_description] %></h2>
+
+<% if !!@market_date %>
+  <%= erb :'market_dates/show' %>
+<% else %>
+  <h2>No upcoming dates </h2>
+<% end %>

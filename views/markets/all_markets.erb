@@ -1,10 +1,18 @@
 <h1> All Markets </h1>
 
 <% @markets.each do | market |%>
-  1
   <div>
     <a href="/markets/<%= market[:market_id] %>">
       <%= market[:market_name] %>
     </a>
+    <ul>
+    <% market[:market_dates].each do | date |  %>
+      <li>
+        <a href="/market_dates/<%= date[:market_date_id].to_i %>">
+          <%= date[:opening_time] %> - <%= date[:closing_time] %> 
+        </a>
+      </li>
+    <% end %>
+    </ul>
   </div>
 <% end %>
