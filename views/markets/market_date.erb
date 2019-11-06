@@ -1,0 +1,43 @@
+<h1><%= @market[:market_name] %></h1>
+<h2><%= @market[:market_description] %></h2>
+
+<h3><%= @market_date[:date_name] %></h2>
+<h3><%= @market_date[:date_description] %></h2>
+<h3><%= @market_date[:date_location] %></h2>
+
+<h4><%= @market_date[:opening_time] %> - <%= @market_date[:closing_time] %></h4>
+
+<div>
+  <form action="/login" method="post">
+    <button>Log On</button>
+  </form>
+</div>
+
+<div>
+  <form action="/login" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button>Logout</button>
+  </form>
+</div>
+
+<h2>Stalls</h2>
+
+<% @stalls.each do |stall| %>
+  <div>
+    <p><%= stall[:stall_name] %></p>
+    <p><%= stall[:stall_location] %></p>
+    <p><%= stall[:opening_time] %></p>
+    <p><%= stall[:closing_time] %></p>
+  </div>
+<% end %>
+
+<h2>Products</h2>
+
+<% @products.each do |product| %>
+  <div>
+    <p><%= stall[:stall_name] %></p>
+    <p><%= stall[:stall_location] %></p>
+    <p><%= stall[:opening_time] %></p>
+    <p><%= stall[:closing_time] %></p>
+  </div>
+<% end %>

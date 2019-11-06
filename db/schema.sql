@@ -14,10 +14,10 @@ CREATE TABLE market_dates (
   opening_time timestamp,
   closing_time timestamp
 );
-
+.
 CREATE TABLE sellers (
   seller_id SERIAL primary key,
-  email_address TEXT,
+  email TEXT,
   seller_name text,
   password_digest TEXT,
   website text
@@ -49,9 +49,17 @@ CREATE TABLE inventory (
   is_available BOOLEAN
 );
 
-INSERT INTO markets (market_name, market_description, market_location) VALUES ('Melbourne Farmers Market', 'Local markets hosted every Sunday', 'Federation Square.');
+INSERT INTO markets (market_name, market_description, market_location) VALUES ('Melbourne Kids Market', 'Local markets hosted every Sunday', 'Federation Square. 2') RETURNING market_id;
 
 INSERT INTO market_dates (market_id, date_name, date_description, date_location, opening_time, closing_time) VALUES(1, 'Mid-November Market', 'Celebrating Spring!', 'Along river-side on Fed. Square', 'Sun 10 Nov 08:30:00 2019 AEST', 'Sun 10 Nov 16:30:00 2019 AEST');
+
+INSERT INTO sellers (
+  email_address,
+  seller_name,
+  password_digest,
+  website
+)
+VALUES ($1:text, $2:text, $3:text, $text);
 
 DO $$
 DECLARE 
@@ -63,3 +71,19 @@ BEGIN
 
   RAISE NOTICE '%', market_id;
 END $$;
+
+DO $$
+DECLARE
+  current_date timestamp := now();
+  r_count INTEGER := 0;
+BEGIN 
+  -- RETURN TABLE
+  select * 
+  from market_dates
+  where market_id = 1
+  and closing_time >= now()
+  order by opening_time asc, market_date_id asc
+  fetch first 1 rows only;
+
+  RAISE NOTICE 'no of records %', r_count;
+END$$;

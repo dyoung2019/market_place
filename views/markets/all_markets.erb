@@ -1,0 +1,10 @@
+<h1> All Markets </h1>
+
+<% @markets.each do | market |%>
+  1
+  <div>
+    <a href="/markets/<%= market[:market_id] %>">
+      <%= market[:market_name] %>
+    </a>
+  </div>
+<% end %>
