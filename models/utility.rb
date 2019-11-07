@@ -12,7 +12,7 @@ def format_hash_arrays(records)
 end
 
 def run_sql(sql, sql_params)
-  conn = PG::connect(dbname: "market-place-app-db")
+  conn = PG::connect( ENV['DATABASE_URL'] || { dbname: "market-place-app-db" })
   records = conn.exec_params(sql, sql_params)
   conn.close
   return format_hash_arrays(records.to_a)
