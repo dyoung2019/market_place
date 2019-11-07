@@ -17,3 +17,15 @@ def run_sql(sql, sql_params)
   conn.close
   return format_hash_arrays(records.to_a)
 end
+
+def convert_timestamp(timestamp)
+  opening_time = Time.parse(timestamp)
+  return {
+    :date => opening_time.strftime("%F"),
+    :time => opening_time.strftime("%H:%M")
+  }
+end 
+
+def convert_date_time_array(date_time_array)
+  return Time.parse(date_time_array.join(" "))
+end 

@@ -1,0 +1,21 @@
+
+<a href="/markets/<%= params[:market_id]%>"> Back </a>
+
+<%= erb :'sellers/details' %>
+
+<h3>Stalls</h3>
+<% if @register_stall_allowed %>
+<a href="/markets/<%= params[:market_id]%>/seller/stalls/new"> Register Stall</a>
+<% end %>
+
+<% if @stalls.length > 0 %>
+  <% @stalls.each do | stall | %>
+    <div>
+      <a href="/stalls/<%= stall[:seller_id] %>">
+        <%= stall[:stall_name] %>
+      </a>
+    </div>
+  <% end %>
+<% else %>
+  <div>No stalls</div>
+<% end %>
