@@ -1,29 +1,58 @@
-<h1>Market Place</h1>
+<h1>Admin</h1>
 
-<a href="/markets">Markets</a>
+<section>
+  <h2>Markets</h2>
+  <a href="/markets">Markets</a>
+  <a class="action-button" href="/admin/markets/new">New Market</a>
+  <a class="action-button" href="/admin/market_dates/new">New Market Date</a>
 
-<h2>Sellers</h2>
-<% if logged_in? %>
-<div>
-  <a href="/admin/seller">Seller</a>
-</div>
-<form action="/admin/login" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <button>Logout</button>
-</form>
-<% else %>
-<a href="/sellers/signup">Signup</a>
-<a href="/admin/login">Login</a>
-<% end %>
-
-<%# DEBUG ONLY - REMOVE LATER %>
-<% @sellers.each do | seller | %>
-  <div>
-    <a href="/sellers/<%= seller[:seller_id] %>">
-      <%= seller[:seller_name] %>
-    </a>
+  <div class="tile-container">
+    <% if !!@markets && @markets.length > 0 %>
+      <% @markets.each do | market | %>
+        <div class="tile">
+          <%= market[:market_id] %> - <%= market[:market_name] %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="tile no-tiles">
+        No markets found
+      </div>
+    <% end %>
   </div>
-<% end %>
+</section>
+
+<section>
+  <h2>Sellers</h2>
+  <% if logged_in? %>
+  <div>
+    <a class="action-button" href="/admin/seller">View Seller</a>
+  </div>
+  <form action="/admin/login" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button class="action-button">Logout</button>
+  </form>
+  <% else %>
+  <a class="action-button" href="/sellers/signup">Signup</a>
+  <a class="action-button" href="/admin/login">Login</a>
+  <% end %>
+
+  <div class="tile-container">
+  <% if !!@markets && @markets.length > 0 %>
+    <%# DEBUGGING %>
+    <% @sellers.each do | seller | %>
+      <div class="tile">
+        <a href="/sellers/<%= seller[:seller_id] %>">
+         <%= seller[:seller_id] %> - <%= seller[:seller_name] %>
+        </a>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="tile no-tiles">
+      No sellers found
+    </div>
+  <% end %>
+  </div>
+</section>
 
 <h2>Stalls</h2>
 

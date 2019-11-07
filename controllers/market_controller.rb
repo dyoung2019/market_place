@@ -14,7 +14,7 @@ get '/markets' do
     market[:market_dates] = market_dates
   end
 
-  erb :'markets/all_markets'
+  erb :'markets/index'
 end
 
 get '/markets/:market_id' do

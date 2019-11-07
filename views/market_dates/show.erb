@@ -25,13 +25,13 @@
 
 <section class="stalls-card">
   <h2 class="stall-heading">Stalls</h2>
-  <div class="stall-tile-container">
+  <div class="tile-container">
     <% 
       stalls = @market_date[:stalls]
       if !!stalls && stalls.length > 0 
     %>
       <% stalls.each do |stall| %>
-        <div class="stall-tile">
+        <div class="tile">
           <a class="image-anchor" href="<%= @view_stall_base_path %>/<%= stall[:stall_id] %>">
             <img src="/images/donuts-unsplash.jpg" alt="donut">
             <p><%= stall[:stall_name] %></p>
@@ -44,7 +44,7 @@
         </div>
       <% end %>
     <% else %>
-      <div class="stall-tile no-stall-tiles">
+      <div class="tile no-stall-tiles">
         No stalls
       </div>
     <% end %>

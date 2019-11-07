@@ -1,0 +1,25 @@
+<h2 class="edit-form-header">Create New Market Date</h2>
+<form class="edit-form" action="<%= @form_action_path %>" method="post">
+  <label for="seller_name">Market Id:</label>
+  <input type="text" name="market_id"> 
+  <label for="website">Date Name:</label>
+  <input type="text" name="date_name" required>
+  <label for="website">Date Description:</label>
+  <input type="text" name="date_description">
+  <label for="website">Date Location:</label>
+  <input type="text" name="date_location"> 
+  <div>
+    <label for="opening_time[]">Opening Time:</label>
+    <input type="date" name="opening_time[]">
+    <input type="time" name="opening_time[]">
+  </div>
+  <div>
+    <label for="closing_time[]">Closing Time:</label>
+    <input type="date" name="closing_time[]">
+    <input type="time" name="closing_time[]">
+  </div>
+  <div class="form-button-group">
+    <a class="action-button" href="<%= @back_anchor_link %>">Cancel</a>
+    <button class="action-button">Create</button>
+  </div>
+</form>

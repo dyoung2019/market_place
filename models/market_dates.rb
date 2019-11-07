@@ -35,3 +35,33 @@ def find_latest_market_date(market_id, current_date)
   # return records.first
   return run_sql(sql, [market_id, current_date]).first;
 end
+
+# DEBUGGING ONLY
+def create_new_market_date(market_date)
+  lines_of_sql = ["INSERT INTO market_dates",
+  "(",
+    "market_id,",
+    "date_name,",
+    "date_description,",
+    "date_location,",
+    "opening_time,",
+    "closing_time",
+  ")",
+  "VALUES (",
+    "$1::int,",
+    "$2::text,",
+    "$3::text,",
+    "$4::text,",
+    "$5::timestamp,",
+    "$6::timestamp",
+  ") RETURNING market_date_id;"
+]
+return run_sql(lines_of_sql.join(" "), [
+  market_date[:market_id],
+  market_date[:date_name],
+  market_date[:date_description],
+  market_date[:date_location],
+  market_date[:opening_time],
+  market_date[:closing_time]
+])
+end

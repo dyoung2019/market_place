@@ -77,8 +77,19 @@ p {
   padding: 2.0rem 1.0rem;
 }
 
+.main-content > section > h2 {
+  font-weight: 400;
+  font-size: 2.0rem;
+  /* padding: 2.0rem 1.0rem; */
+}
+
 .main-content > section ~ section {
   margin-top: 3.0rem;
+}
+
+.main-content > h1 {
+  font-weight: 700;
+  font-size: 2.5rem;
 }
 
 .hero-card {
@@ -145,13 +156,13 @@ p {
   margin-bottom: 2.0rem;
 }
 
-.stall-tile-container {
+.tile-container {
   display: flex;
   flex-direction: column;
   align-content: center;
 }
 
-.stall-tile-container .stall-tile {
+.tile-container .tile {
   background-color: var(--color-2);
   width: 100%;
   border-radius: 0.5rem;
@@ -160,19 +171,19 @@ p {
   display: flex;
 }
 
-.stall-tile-container .stall-tile ~ .stall-tile {
+.tile-container .tile ~ .tile {
   margin-top: 1.0rem;
 }
 
-.stall-tile-container .stall-tile.no-stall-tiles {
+.tile-container .tile.no-tiles {
   text-align: center;
 }
 
-.stall-tile .image-anchor{
+.tile .image-anchor{
   padding: 1.0rem;
 }
 
-.stall-tile .text-info {
+.tile .text-info {
   margin-left: 1.0rem;
 }
 
@@ -224,6 +235,11 @@ p {
   color: var(--color-dark);
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.edit-form .form-button-group {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .action-button {

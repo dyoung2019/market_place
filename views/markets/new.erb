@@ -1,0 +1,11 @@
+<h2 class="edit-form-header">Create New Market</h2>
+<form class="edit-form" action="<%= @form_action_path %>" method="post">
+  <label for="seller_name">Market Name:</label>
+  <input type="text" name="market_name"> 
+  <label for="website">Market Description:</label>
+  <input type="text" name="market_description">
+  <label for="website">Market Location:</label>
+  <input type="text" name="market_location">
+  <button class="action-button">Create</button>
+</form>
+<a class="action-button" href="<%= @back_anchor_link %>">Back</a>
