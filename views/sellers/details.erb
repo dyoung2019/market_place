@@ -4,4 +4,6 @@
 <h2><%= @seller[:email_address] %></h2>
 <h2><%= @seller[:website] %></h2>
 
-<a href="/sellers/<%= @seller[:seller_id] %>/edit">Edit</a>
+<% if seller_logged_in?(@seller[:seller_id]) %>
+  <a href="<%= @edit_action_path %>">Edit</a>
+<% end %>

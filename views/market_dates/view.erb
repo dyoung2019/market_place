@@ -1,5 +1,24 @@
+<%# HEADER  %>
+ <% if logged_in? %>
+  <div>
+    <a href="/market_dates/<%= params[:market_date_id] %>/seller">Seller</a>
+  </div>  
+  <div>
+    <form action="/market_dates/<%= params[:market_date_id] %>/login" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button>Logout</button>
+    </form>
+  </div>
+<% else %>
+  <div>
+    <a href="/market_dates/<%= params[:market_date_id] %>/login">
+      Log On
+    </a>
+  </div>
+<% end %>
+
 <% if !!@market_date %>
   <%= erb :'market_dates/show' %>
 <% else %>
-  <h2>No upcoming dates </h2>
+  <h2> Market date is invalid </h2>
 <% end %>

@@ -17,13 +17,10 @@ require_relative 'models/stalls.rb'
 require_relative 'models/products.rb'
 
 get '/' do
-  @sellers = get_all_sellers()
-  @stalls = []
-  @products = []
-
   erb :index
 end
 
+require_relative 'controllers/admin.rb'
 require_relative 'controllers/sellers.rb'
 require_relative 'controllers/markets.rb'
 require_relative 'controllers/products.rb'

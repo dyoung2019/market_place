@@ -49,11 +49,15 @@
       - QUESTION (Should sign-up be disabled on the day?)
   1. Once they have logged in the market date portal, redirect them to seller screen
       - /markets/:market_id/login --> /markets/:market_id/sellers/:seller_id
+
       - /market_dates/:market_date_id/login --> /market_dates/:market_date_id/sellers/:seller_id
+
       - /login (admin) --> /sellers/:seller_id (admin)
   1. Redirect all other users cannot access this redirect page
       - /markets/:market_id/sellers/:seller_id --> /markets/:market_id/loging
-      -  /market_dates/:market_date_id/sellers/:seller_id --> /market_dates/:market_date_id/login -->
+
+      -  /market_dates/:market_date_id/sellers/:seller_id --> /market_dates/:market_date_id/login
+      
       - /sellers/:seller_id (admin) --> /login (admin)
 
 ### Registering for a stall via the market date portal

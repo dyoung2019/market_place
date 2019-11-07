@@ -3,8 +3,9 @@
 <h2><%= @seller[:seller_name] %></h2>
 <h2><%= @seller[:email_address] %></h2>
 
-<form action="/sellers/<%= @seller[:seller_id]%>/edit" method="post">
+<form action="<%= @form_action_path %>" method="post">
   <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="seller_id" value="<%= @seller[:seller_id] %>">
   <label for="seller_name">Name:</label>
   <input type="text" name="seller_name"> 
   <label for="website">Website:</label>

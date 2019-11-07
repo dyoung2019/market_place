@@ -1,0 +1,52 @@
+<h1>Market Place</h1>
+
+<a href="/markets">Markets</a>
+
+<h2>Sellers</h2>
+<% if logged_in? %>
+<div>
+  <a href="/admin/seller">Seller</a>
+</div>
+<form action="/admin/login" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button>Logout</button>
+</form>
+<% else %>
+<a href="/sellers/signup">Signup</a>
+<a href="/admin/login">Login</a>
+<% end %>
+
+<%# DEBUG ONLY - REMOVE LATER %>
+<% @sellers.each do | seller | %>
+  <div>
+    <a href="/sellers/<%= seller[:seller_id] %>">
+      <%= seller[:seller_name] %>
+    </a>
+  </div>
+<% end %>
+
+<h2>Stalls</h2>
+
+<a href="/stalls/new">New Stall</a>
+
+<%# DEBUG ONLY - REMOVE LATER %>
+<% @stalls.each do | stall | %>
+  <div>
+    <a href="/sellers/<%= stall[:seller_id] %>">
+      <%= stall[:stall_name] %>
+    </a>
+  </div>
+<% end %>
+
+<h2>Products</h2>
+
+<a href="/products/new">New Products</a>
+
+<%# DEBUG ONLY - REMOVE LATER %>
+<% @products.each do | product | %>
+  <div>
+    <a href="/sellers/<%= product[:product_id] %>">
+      <%= product[:product_name] %>
+    </a>
+  </div>
+<% end %>

@@ -35,3 +35,41 @@ get '/markets/:market_id' do
     erb :'market_dates/show'
   end
 end
+
+get '/markets/:market_id/login' do
+  @form_action_path = "/markets/#{params[:market_id]}/login"
+  erb :'sellers/login'
+end
+
+post '/markets/:market_id/login' do
+  begin
+    if seller_now_logged_in?(params[:email], params[:password])
+      redirect "/markets/#{params[:market_id]}/seller"
+    else
+      @error_message = 'Cannot login with email / password combination' 
+      erb :'sellers/login'
+    end
+  rescue => exception
+    @error_message = 'Cannot login with email / password combination' 
+    erb :'sellers/login'
+  end
+end
+
+get '/markets/:market_id/seller' do
+  seller = get_current_seller()
+
+  if !!seller
+    @seller = seller
+    erb :'sellers/details'
+  else
+    @error_message = 'Cannot login with email / password combination' 
+    erb :'sellers/login'    
+  end 
+end
+
+delete '/markets/:market_id/login' do
+  if logged_in?
+    log_out_of_session()
+  end
+  redirect "/markets/#{params[:market_id]}"
+end

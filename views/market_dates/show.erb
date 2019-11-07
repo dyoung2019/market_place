@@ -5,19 +5,6 @@
 
   <h4><%= @market_date[:opening_time] %> - <%= @market_date[:closing_time] %></h4>
 
-  <div>
-    <form action="/login" method="post">
-      <button>Log On</button>
-    </form>
-  </div>
-
-  <div>
-    <form action="/login" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <button>Logout</button>
-    </form>
-  </div>
-
   <h2>Stalls</h2>
 
   <% @market_date[:stalls].each do |stall| %>
