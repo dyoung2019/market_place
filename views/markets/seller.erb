@@ -11,9 +11,10 @@
 <% if @stalls.length > 0 %>
   <% @stalls.each do | stall | %>
     <div>
-      <a href="/stalls/<%= stall[:seller_id] %>">
+      <a href="/markets/<%= params[:market_id]%>/stalls/<%= stall[:stall_id] %>">
         <%= stall[:stall_name] %>
       </a>
+      <p><%= stall[:stall_location] %></p>
     </div>
   <% end %>
 <% else %>

@@ -20,11 +20,11 @@ get '/' do
   erb :index
 end
 
-require_relative 'controllers/admin.rb'
-require_relative 'controllers/sellers.rb'
-require_relative 'controllers/markets.rb'
-require_relative 'controllers/products.rb'
-require_relative 'controllers/market_dates.rb'
+require_relative 'controllers/admin_controller.rb'
+require_relative 'controllers/seller_controller.rb'
+require_relative 'controllers/market_controller.rb'
+require_relative 'controllers/product_controller.rb'
+require_relative 'controllers/market_date_controller.rb'
 
 
 

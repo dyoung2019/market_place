@@ -1,5 +1,11 @@
 require_relative 'utility'
 
+def stall_changes_allowed?(stall_id)
+  stall = find_one_stall_by_id(stall_id)
+  update_allowed = !!stall && seller_logged_in?(stall[:seller_id])
+  return update_allowed
+end
+
 def find_all_stalls_on_market_date(market_date_id)
   return nil unless !!market_date_id
   sql = "select * from stalls where market_date_id = $1::int;"
@@ -15,7 +21,7 @@ end
 def find_one_stall_by_id(stall_id) 
   return nil unless !!stall_id
   sql = "select * from stalls where stall_id = $1::int;"
-  return run_sql(sql, [stall_id])
+  return run_sql(sql, [stall_id]).first
 end
 
 def get_all_stalls() 
@@ -52,4 +58,29 @@ def create_new_stall(stall_info)
     stall_info[:opening_time],
     stall_info[:closing_time]
   ])
+end
+
+def update_stall(stall_info)
+  lines_of_sql = ["update stalls",
+    "SET",
+      "stall_name = $2::text,",
+      "stall_location = $3::text,",
+      "website = $4::text,",
+      "opening_time = $5::timestamp,",
+      "closing_time = $6::timestamp",
+    "where stall_id = $1::int;" 
+  ]
+
+  run_sql(lines_of_sql.join(" "), [
+    stall_info[:stall_id],
+    stall_info[:stall_name],
+    stall_info[:stall_location],
+    stall_info[:website],
+    stall_info[:opening_time],
+    stall_info[:closing_time]
+  ])
+end
+
+def delete_stall(stall_id) 
+  run_sql("delete from stalls where stall_id = $1::int;", [stall_id])
 end

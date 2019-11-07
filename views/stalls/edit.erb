@@ -1,0 +1,20 @@
+<%= @form_action_path %>
+Opening date: <%= @opening_time.to_s %>
+Closing date: <%= @closing_time.to_s %>
+<form action="<%= @form_action_path %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="stall_id" value="<%= @stall[:stall_id] %>">
+  <label for="stall_name">Stall Name:</label>
+  <input type="text" name="stall_name" value="<%= @stall[:stall_name] %>" required>
+  <label for="stall_location">Stall Location:</label>
+  <input type="text" name="stall_location" value="<%= @stall[:stall_location] %>">
+  <label for="website">Website:</label>
+  <input type="text" name="website" value="<%= @stall[:website] %>">
+  <label for="opening_time[]">Opening Time:</label>
+  <input type="date" name="opening_time[]" value="<%= @opening_time[:date] %>" required>
+  <input type="time" name="opening_time[]" value="<%= @opening_time[:time] %>" required>
+  <label for="closing_time[]">Closing Time:</label>
+  <input type="date" name="closing_time[]" value="<%= @closing_time[:date] %>" required>
+  <input type="time" name="closing_time[]" value="<%= @closing_time[:time] %>"required>
+  <button>Save Changes</button>
+</form>

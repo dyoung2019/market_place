@@ -7,7 +7,8 @@ def logged_in?
 end
 
 def seller_logged_in?(seller_id)
-  session[:user_id] === seller_id
+  seller = get_current_seller()
+  return !!seller && seller[:seller_id] === seller_id
 end
 
 def get_current_seller()
@@ -72,6 +73,4 @@ def update_seller(seller)
    seller[:seller_name],
    seller[:website]
   ])
-end 
-
-
+end

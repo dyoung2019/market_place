@@ -1,0 +1,15 @@
+<h1><%= @stall[:stall_name] %></h1>
+<h2>Location: <%= @stall[:stall_location] %></h2>
+<h3>Website: <%= @stall[:website] %></h3>
+
+<h4>Opens at: <%= @stall[:opening_time] %></h4>
+<h4>Closes at: <%= @stall[:closing_time] %></h4>
+
+<% if @edit_link_allowed %>
+  <a href="/markets/<%= params[:market_id] %>/stalls/<%= params[:stall_id] %>/edit">Edit</a>
+
+  <form action="/markets/<%= params[:market_id] %>/stalls/<%= params[:stall_id] %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button>Delete</button>
+  </form>
+<% end %>

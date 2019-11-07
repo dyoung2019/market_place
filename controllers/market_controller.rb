@@ -100,6 +100,8 @@ get '/markets/:market_id/seller/stalls/new' do
     @opening_time = convert_timestamp(market_date[:opening_time])
     @closing_time = convert_timestamp(market_date[:closing_time])
 
+    @seller = seller
+
     erb :'stalls/new'
   else
     # no market date -> redirect
@@ -109,6 +111,13 @@ get '/markets/:market_id/seller/stalls/new' do
   end
 end
 
+def format_stall_info(stall_info) 
+  stall = format_hash(params)
+  stall[:opening_time] = convert_date_time_array(params[:opening_time])
+  stall[:closing_time] = convert_date_time_array(params[:closing_time])
+  return stall
+end 
+
 post '/markets/:market_id/seller/stalls/new' do
   seller = get_current_seller()
 
@@ -117,15 +126,67 @@ post '/markets/:market_id/seller/stalls/new' do
   redirect "/markets/#{market_id}/login" unless !!seller
 
   # REPLACE VALUES
-  stall = format_hash(params)
-  stall[:opening_time] = convert_date_time_array(params[:opening_time])
-  stall[:closing_time] = convert_date_time_array(params[:closing_time])
-
+  stall = format_stall_info(params)
   create_new_stall(stall)
 
   # REDIRECT
-  populate_seller_info(market_id, seller)
+  redirect '/markets/:market_id/seller'
+end
+
+get '/markets/:market_id/stalls/:stall_id' do
+  stall_id = params[:stall_id]
+
+  update_allowed = stall_changes_allowed?(stall_id)
+  redirect "/markets/#{params[:market_id]}" unless update_allowed
+
+  @stall = find_one_stall_by_id(stall_id)
+  
+  @edit_link_allowed = !!@stall && seller_logged_in?(@stall[:seller_id])
 
   # binding.pry
-  erb :'markets/seller' 
+  erb :'stalls/view'
+end 
+
+get '/markets/:market_id/stalls/:stall_id/edit' do
+  update_allowed = stall_changes_allowed?(params[:stall_id])
+  redirect "/markets/#{params[:market_id]}" unless update_allowed
+
+  stall_id = params[:stall_id]
+  @stall = find_one_stall_by_id(stall_id)
+
+  @form_action_path = "/markets/#{params[:market_id]}/stalls/#{params[:stall_id]}/edit"
+  @opening_time = convert_timestamp(@stall[:opening_time])
+  @closing_time = convert_timestamp(@stall[:closing_time])
+
+  # binding.pry
+  erb :'stalls/edit'
+end 
+
+patch '/markets/:market_id/stalls/:stall_id/edit' do
+  # return 'PATCH'
+
+  stall_id = params[:stall_id]
+  @stall = find_one_stall_by_id(stall_id)
+
+  update_allowed = stall_changes_allowed?(stall_id)
+  redirect "/markets/#{params[:market_id]}" unless update_allowed
+  
+  stall_info = format_stall_info(params)
+  update_stall(stall_info)
+
+  # binding.pry
+  # redirect on success 
+  redirect "/markets/#{params[:market_id]}/stalls/#{params[:stall_id]}"
+end
+
+delete '/markets/:market_id/stalls/:stall_id' do
+  stall_id = params[:stall_id]
+
+  update_allowed = stall_changes_allowed?(stall_id)
+  redirect "/markets/#{params[:market_id]}" unless update_allowed
+
+  
+  delete_stall(stall_id)
+
+  redirect "/markets/#{params[:market_id]}/seller"
 end
