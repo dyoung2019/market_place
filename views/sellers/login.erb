@@ -1,11 +1,10 @@
-<h1>Login</h1>
-
-<form action="<%= @form_action_path %>" method="post">
+<h1 class="edit-header">Login</h1>
+<div class="edit-form-error"><%= @error_message %></div>
+<form class="edit-form" action="<%= @form_action_path %>" method="post">
   <label for="email">Email:</label>
-  <input type="email" name="email">
+  <input type="email" name="email" placeholder="email here">
   <label for="password">Password:</label>
-  <input type="password" name="password">
-  <button>Log In</button>
+  <input type="password" name="password" placeholder="password here">
+  <button class="action-button">Login</button>
 </form>
 
-<%= @error_message %>

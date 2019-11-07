@@ -1,14 +1,13 @@
-<h1>Seller</h1>
+<h2 class="edit-header">Edit Seller Details</h2>
 
-<h2><%= @seller[:seller_name] %></h2>
-<h2><%= @seller[:email_address] %></h2>
-
-<form action="<%= @form_action_path %>" method="post">
+<h3>Email: <%= @seller[:email] %></h3>
+<form class="edit-form" action="<%= @form_action_path %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="hidden" name="seller_id" value="<%= @seller[:seller_id] %>">
   <label for="seller_name">Name:</label>
-  <input type="text" name="seller_name"> 
+  <input type="text" name="seller_name" value="<%= @seller[:seller_name] %> required" > 
   <label for="website">Website:</label>
-  <input type="text" name="website">
-  <button>Save</button>
+  <input type="text" name="website" value="<%= @seller[:website] %>">
+  <button class="action-button">Save</button>
 </form>
+<a class="action-button" href="<%= @back_anchor_link %>">Back</a>

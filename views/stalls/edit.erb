@@ -1,7 +1,5 @@
-<%= @form_action_path %>
-Opening date: <%= @opening_time.to_s %>
-Closing date: <%= @closing_time.to_s %>
-<form action="<%= @form_action_path %>" method="post">
+<h2 class="edit-form-header">Edit Stall </h2>
+<form class="edit-form" action="<%= @form_action_path %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="hidden" name="stall_id" value="<%= @stall[:stall_id] %>">
   <label for="stall_name">Stall Name:</label>
@@ -10,11 +8,15 @@ Closing date: <%= @closing_time.to_s %>
   <input type="text" name="stall_location" value="<%= @stall[:stall_location] %>">
   <label for="website">Website:</label>
   <input type="text" name="website" value="<%= @stall[:website] %>">
+  <div>
   <label for="opening_time[]">Opening Time:</label>
-  <input type="date" name="opening_time[]" value="<%= @opening_time[:date] %>" required>
-  <input type="time" name="opening_time[]" value="<%= @opening_time[:time] %>" required>
+    <input type="date" name="opening_time[]" value="<%= @opening_time[:date] %>" required>
+    <input type="time" name="opening_time[]" value="<%= @opening_time[:time] %>" required>
+  </div>
+  <div>
   <label for="closing_time[]">Closing Time:</label>
   <input type="date" name="closing_time[]" value="<%= @closing_time[:date] %>" required>
   <input type="time" name="closing_time[]" value="<%= @closing_time[:time] %>"required>
-  <button>Save Changes</button>
+  </div>
+  <button class="action-button">Save Changes</button>
 </form>

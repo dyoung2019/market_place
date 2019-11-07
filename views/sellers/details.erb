@@ -1,9 +1,12 @@
-<h1>Seller</h1>
+<h1>SELLER</h1>
 
-<h2><%= @seller[:seller_name] %></h2>
-<h2><%= @seller[:email_address] %></h2>
-<h2><%= @seller[:website] %></h2>
-
-<% if seller_logged_in?(@seller[:seller_id]) %>
-  <a href="<%= @edit_action_path %>">Edit</a>
+<h2>Name: <%= @seller[:seller_name] %></h2>
+<h2>Email: <%= @seller[:email] %></h2>
+<% 
+  website = @seller[:website]
+if !!website && !website.empty?
+%>
+<h2>Website: <a href="<%= @seller[:website] %>"><%= @seller[:website] %></a></h2>
+<% else %>
+<h2>Website: <%= @seller[:website] %></h2>
 <% end %>

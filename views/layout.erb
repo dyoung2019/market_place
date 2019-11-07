@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>Market Place</title>
-  <link rel='stylesheet' href='/stylesheets/main.css'>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel='stylesheet' href='/stylesheets/style.css'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-  <% if logged_in? %>
-    <%= get_current_seller[:email] %> - <%= session[:user_id] %>
-  <% end %>
-
-  <nav>
-    <a href="/">home</a>
-    <a href="/admin">admin</a>
-    <a href="/markets">markets</a>
+  <nav class="side-nav">
+    <a class="close-nav-button">&times;</a>
+    <a href="/">Home</a>
+    <a href="/admin">Admin</a>
+    <a href="/markets">Markets</a>
   </nav>
-  
-  <%= yield %>
-
+  <div class="page-content">
+    <header class="page-header">
+      <div class="open-nav-button">&#9776;</div>
+    </header>
+    <main class="main-content">
+      <%= yield %>
+    </main>
+  </div>
+  <script src="/javascripts/app.js"></script>
 </body>
 </html>

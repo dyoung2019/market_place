@@ -1,26 +1,60 @@
-  12323
-  <h3><%= @market_date[:date_name] %></h2>
-  <h3><%= @market_date[:date_description] %></h2>
-  <h3><%= @market_date[:date_location] %></h2>
 
-  <h4><%= @market_date[:opening_time] %> - <%= @market_date[:closing_time] %></h4>
-
-  <h2>Stalls</h2>
-
-  <% @market_date[:stalls].each do |stall| %>
-    1
-    <div>
-      <p><%= stall[:stall_name] %></p>
-      <p><%= stall[:stall_location] %></p>
-      <p><%= stall[:opening_time] %></p>
-      <p><%= stall[:closing_time] %></p>
+<section class="hero-card">
+  <img class="card-image" src="/images/market-unsplash.jpg" alt="donut">
+  <div class="text-panel">
+    <div class="card-heading">
+      <h2><%= @market_date[:date_name] %></h2>
     </div>
-  <% end %>
+    <div class="card-heading">
+      <h3><%= @market_date[:date_description] %></h3>
+    </div>
+    <div class="card-heading" >
+      <h3><%= @market_date[:date_location] %></h2>
+    </div>
+    <div class="card-heading" >
+      <h3><%= convert_timestamp(@market_date[:opening_time])[:date] %></h3>
+    </div>
+    <div class="card-heading" >
+      <h4>Opens at: <%= convert_timestamp(@market_date[:opening_time])[:time] %></h4>
+    </div>
+    <div class="card-heading" >
+      <h4>Closes at: <%= convert_timestamp(@market_date[:closing_time])[:time] %></h4>
+    </div>
+  </div>
+</section>
 
+<section class="stalls-card">
+  <h2 class="stall-heading">Stalls</h2>
+  <div class="stall-tile-container">
+    <% 
+      stalls = @market_date[:stalls]
+      if !!stalls && stalls.length > 0 
+    %>
+      <% stalls.each do |stall| %>
+        <div class="stall-tile">
+          <a class="image-anchor" href="<%= @view_stall_base_path %>/<%= stall[:stall_id] %>">
+            <img src="/images/donuts-unsplash.jpg" alt="donut">
+            <p><%= stall[:stall_name] %></p>
+          </a>
+          <div class="text-info">
+            <p><%= stall[:stall_location] %></p>
+            <p>Opens at: <%= convert_timestamp(@market_date[:opening_time])[:time] %></p>
+            <p>Closes at: <%= convert_timestamp(@market_date[:closing_time])[:time] %></p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="stall-tile no-stall-tiles">
+        No stalls
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<section class="products-card">
   <h2>Products</h2>
 
   <% @market_date[:sale_items].each do |item| %>
-    2
     <div>
       <p><%= item[:stall_name] %></p>
       <p><%= item[:stall_location] %></p>
@@ -28,3 +62,4 @@
       <p><%= item[:closing_time] %></p>
     </div>
   <% end %>
+</section>

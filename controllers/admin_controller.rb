@@ -31,7 +31,7 @@ get '/admin/seller' do
   if !!seller
     @seller = seller
     @edit_action_path = "/admin/seller/edit"
-    erb :'sellers/details'
+    erb :'admin/seller'
   else
     @error_message = 'Cannot login with email / password combination' 
     erb :'sellers/login'    
@@ -50,7 +50,8 @@ get '/admin/seller/edit' do
 
   if !!seller
     @seller = seller
-    @form_action_path = '/admin/seller/edit'
+    @edit_action_path = '/admin/seller/edit'
+    @back_anchor_link = '/admin/seller'
     erb :'sellers/edit'
   else 
     redirect '/admin/login'    

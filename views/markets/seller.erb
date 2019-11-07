@@ -5,7 +5,7 @@
 
 <h3>Stalls</h3>
 <% if @register_stall_allowed %>
-<a href="/markets/<%= params[:market_id]%>/seller/stalls/new"> Register Stall</a>
+<a class="action-button" href="/markets/<%= params[:market_id]%>/seller/stalls/new"> Register Stall</a>
 <% end %>
 
 <% if @stalls.length > 0 %>

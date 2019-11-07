@@ -1,0 +1,316 @@
+:root {
+  --color-1: #81968B;
+  --color-2: #FFFFFF;
+  --color-3: #DAE3DE;
+  --color-4: #967572;
+  --color-5: #E3DBDA;
+  --color-dark: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+main {
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-3);
+}
+
+img {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+}
+
+div,
+p,
+h1, 
+h2,
+h3,
+h4,
+body {
+  border: 0;
+  margin: 0;
+}
+
+div,
+button,
+label,
+input,
+a,
+h1,
+h2,
+h3,
+h4,
+p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.page-content {
+  width: 100%;
+}
+
+.main-content {
+  padding: 5vh 5vw;
+}
+
+.page-header {
+  /* height: 10vh; */
+  background-color: var(--color-2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.page-header .open-nav-button {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  background-color: var(--color-5);
+}
+
+.main-content > section {
+  padding: 2.0rem 1.0rem;
+}
+
+.main-content > section ~ section {
+  margin-top: 3.0rem;
+}
+
+.hero-card {
+  position: relative;
+}
+
+.hero-card > .card-image {
+  min-width: 100%;
+}
+
+.hero-card > .text-panel {
+  bottom: 0px;
+  z-index: 1;
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  background-color: var(--color-3);
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  width: 40%;
+}
+
+.hero-card .card-heading  {
+  margin-left: 30%;
+  z-index: 2;
+  width: 250%;
+  /* font-size: 2.0rem; */
+  background-color: transparent;
+  display: flex;
+}
+
+.hero-card h2,
+.hero-card h3,
+.hero-card h4{
+  color: var(--color-3);
+  background-color: var(--color-1);
+}
+
+.hero-card h2  {
+  font-size: 2.0rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
+}
+
+.hero-card h3  {
+  font-size: 1.5rem;
+  margin-left: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding: 0.4rem 0.75rem;
+}
+
+.hero-card h4 {
+  font-size: 1.25rem;
+  margin-right: 0.625rem;
+  margin-bottom: 0.625rem;
+  padding: 0.2rem 0.625rem;
+}
+
+.stalls-card .stall-heading {
+  margin-bottom: 2.0rem;
+}
+
+.stall-tile-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.stall-tile-container .stall-tile {
+  background-color: var(--color-2);
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 7px -5px var(--color-1);
+  padding: 1.5rem;
+  display: flex;
+}
+
+.stall-tile-container .stall-tile ~ .stall-tile {
+  margin-top: 1.0rem;
+}
+
+.stall-tile-container .stall-tile.no-stall-tiles {
+  text-align: center;
+}
+
+.stall-tile .image-anchor{
+  padding: 1.0rem;
+}
+
+.stall-tile .text-info {
+  margin-left: 1.0rem;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form > label {
+  font-size: 1.0rem;
+  text-transform: uppercase;
+  margin-top: 1.0rem;
+  margin-bottom: 0.8rem;
+}
+
+.edit-form > input {
+  height: 2.0rem;
+  font-size: 1.0rem;
+  border: 1px solid var(--color-4);
+  margin-bottom: 2.4rem;
+  padding-left: 0.25rem;
+}
+
+/* .edit-form button {
+  height: 2.5rem;
+  border: 1px solid var(--color-4);
+  background-color: var(--color-1);
+  border: 1px solid var(--color-4);
+  color: var(--color-dark);
+  font-size: 1.5rem;
+  line-height: 1.72rem;
+  padding: 0.25rem;
+  border-radius: 2.0rem;
+} */
+
+/* .edit-form button:hover {
+  background-color: var(--color-3);
+  transition: background-color 300ms;
+} */
+
+.edit-header {
+  font-size: 2.0rem;
+  text-transform: uppercase;
+}
+
+.edit-form-error {
+  text-transform: capitalize;
+  text-align: center;
+  color: var(--color-dark);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.action-button {
+  height: 2.5rem;
+  border: 1px solid var(--color-4);
+  background-color: var(--color-4);
+  color: var(--color-dark);
+  /* text-transform: uppercase; */
+  font-size: 1.0rem;
+  line-height: 1.72rem;
+  padding: 0.25rem 1rem;
+  border-radius: 2.0rem;
+  /* min-width: max-content; */
+  /* width: 100px; */
+  display: block;
+  text-align: center;
+  margin: 1.15rem 0;
+  color: var(--color-2);
+  font-weight: 700;
+}
+
+.action-button:hover {
+  background-color: var(--color-1);
+  color: var(--color-2);
+  transition: background-color 300ms;
+}
+
+/* https://www.w3schools.com/howto/howto_js_sidenav.asp */
+.side-nav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.side-nav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.side-nav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.side-nav .close-nav-button {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 2.0rem;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+.page-content {
+  transition: margin-left .5s;
+}
+
+/* push content left */
+.side-nav.nav-open {
+  width: 250px;
+}
+
+.page-content.nav-open {
+  margin-left: 250px;
+  width: 100%;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .side-nav {
+    padding-top: 15px;
+  }
+
+  .side-nav a {
+    font-size: 18px;
+  }
+}

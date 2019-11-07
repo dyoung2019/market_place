@@ -6,10 +6,10 @@
 <h4>Closes at: <%= @stall[:closing_time] %></h4>
 
 <% if @edit_link_allowed %>
-  <a href="/markets/<%= params[:market_id] %>/stalls/<%= params[:stall_id] %>/edit">Edit</a>
+  <a class="action-button" href="<%= @edit_action_path %>">Edit</a>
 
-  <form action="/markets/<%= params[:market_id] %>/stalls/<%= params[:stall_id] %>" method="post">
+  <form action="<%= @delete_action_path %>" method="post">
     <input type="hidden" name="_method" value="delete">
-    <button>Delete</button>
+    <button class="action-button">Delete</button>
   </form>
 <% end %>

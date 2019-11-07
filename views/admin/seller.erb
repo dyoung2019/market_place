@@ -1,0 +1,4 @@
+<%= erb :'sellers/details' %>
+<% if seller_logged_in?(@seller[:seller_id]) %>
+  <a class="action-button" href="<%= @edit_action_path %>">Edit</a>
+<% end %>

@@ -1,7 +1,5 @@
-<h1>Signup</h1>
-<%= @form_action_path %>
-
-<form action="/sellers/signup" method="post">
+<h1 class="edit-form-header" >Signup</h1>
+<form class="edit-form" action="/sellers/signup" method="post">
   <label for="email">Email:</label>
   <input type="email" name="email">
   <label for="seller_name">Name:</label>
@@ -10,5 +8,5 @@
   <input type="password" name="password">
   <label for="website">Website:</label>
   <input type="text" name="website">
-  <button>Sign up!</button>
+  <button class="action-button" >Sign up!</button>
 </form>

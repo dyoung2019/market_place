@@ -30,10 +30,9 @@ get '/markets/:market_id' do
 
   @market_date = find_latest_market_date(market_id, server_time)
   insert_stalls_and_sale_items(@market_date)
-  
-  erb :'markets/view' do
-    erb :'market_dates/show'
-  end
+  @view_stall_base_path = "/markets/#{market_id}/stalls"
+
+  erb :'markets/view'
 end
 
 get '/markets/:market_id/login' do
@@ -130,7 +129,7 @@ post '/markets/:market_id/seller/stalls/new' do
   create_new_stall(stall)
 
   # REDIRECT
-  redirect '/markets/:market_id/seller'
+  redirect "/markets/#{market_id}/seller"
 end
 
 get '/markets/:market_id/stalls/:stall_id' do
@@ -142,24 +141,29 @@ get '/markets/:market_id/stalls/:stall_id' do
   @stall = find_one_stall_by_id(stall_id)
   
   @edit_link_allowed = !!@stall && seller_logged_in?(@stall[:seller_id])
+  @delete_action_path = "/markets/#{params[:market_id]}/stalls/#{stall_id}" 
+  @edit_action_path = "/markets/#{params[:market_id]}/stalls/#{stall_id}/edit" 
 
   # binding.pry
   erb :'stalls/view'
 end 
 
 get '/markets/:market_id/stalls/:stall_id/edit' do
-  update_allowed = stall_changes_allowed?(params[:stall_id])
-  redirect "/markets/#{params[:market_id]}" unless update_allowed
-
   stall_id = params[:stall_id]
-  @stall = find_one_stall_by_id(stall_id)
+  update_allowed = stall_changes_allowed?(stall_id)
 
-  @form_action_path = "/markets/#{params[:market_id]}/stalls/#{params[:stall_id]}/edit"
-  @opening_time = convert_timestamp(@stall[:opening_time])
-  @closing_time = convert_timestamp(@stall[:closing_time])
+  if update_allowed 
+    @stall = find_one_stall_by_id(stall_id)
 
-  # binding.pry
-  erb :'stalls/edit'
+    @form_action_path = "/markets/#{params[:market_id]}/stalls/#{stall_id}/edit"
+    @opening_time = convert_timestamp(@stall[:opening_time])
+    @closing_time = convert_timestamp(@stall[:closing_time])
+
+    # binding.pry
+    erb :'stalls/edit'  
+  else
+    redirect "/markets/#{params[:market_id]}" 
+  end
 end 
 
 patch '/markets/:market_id/stalls/:stall_id/edit' do
@@ -183,10 +187,11 @@ delete '/markets/:market_id/stalls/:stall_id' do
   stall_id = params[:stall_id]
 
   update_allowed = stall_changes_allowed?(stall_id)
-  redirect "/markets/#{params[:market_id]}" unless update_allowed
+  if update_allowed
+    delete_stall(stall_id)
 
-  
-  delete_stall(stall_id)
-
-  redirect "/markets/#{params[:market_id]}/seller"
+    redirect "/markets/#{params[:market_id]}/seller"
+  else 
+    redirect "/markets/#{params[:market_id]}"
+  end
 end
