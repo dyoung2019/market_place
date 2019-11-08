@@ -60,10 +60,10 @@ end
 
 def populate_seller_info(market_id, seller)
   @seller = seller
-  @stalls = find_all_stalls_by_seller(seller[:seller_id])
-
+  
   server_time = Time.now
   market_date = find_latest_market_date(market_id, server_time)
+  @stalls = find_all_stalls_by_seller_on_date(seller[:seller_id], market_date[:market_date_id])
   @register_stall_allowed = !!market_date
 end
 

@@ -18,6 +18,12 @@ def find_all_stalls_by_seller(seller_id)
   return run_sql(sql, [seller_id])
 end
 
+def find_all_stalls_by_seller_on_date(seller_id, market_date_id)
+  return nil unless !!seller_id
+  sql = "select * from stalls where seller_id = $1::int and market_date_id = $2::int;"
+  return run_sql(sql, [seller_id, market_date_id])
+end
+
 def find_one_stall_by_id(stall_id) 
   return nil unless !!stall_id
   sql = "select * from stalls where stall_id = $1::int;"
