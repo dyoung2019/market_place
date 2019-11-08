@@ -9,7 +9,7 @@ post '/sellers/signup' do
 
   create_new_seller(seller)
 
-  redirect '/'
+  redirect '/admin'
 end
 
 # get '/sellers/login' do

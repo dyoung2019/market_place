@@ -9,6 +9,12 @@ get '/admin' do
   @products = []
   @markets = get_all_markets()
 
+  # NAV controls
+  @seller_account_path = '/admin/seller'
+  @seller_log_out_path = '/admin/login'
+  @seller_sign_up_path = '/admin/signup'
+  @seller_log_in_path = '/admin/login'
+
   erb :'admin/index'
 end
 
@@ -101,5 +107,17 @@ post '/admin/market_dates/new' do
   market_date[:closing_time] = convert_date_time_array(params[:closing_time])
   
   create_new_market_date(market_date)
+  redirect '/admin'
+end
+
+get '/admin/signup' do
+  erb :'sellers/signup'
+end
+
+post '/admin/signup' do
+  seller = format_hash(params)
+
+  create_new_seller(seller)
+
   redirect '/admin'
 end

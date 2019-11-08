@@ -1,4 +1,5 @@
 require 'pg'
+require 'date'
 
 def format_hash(record)
   return nil unless !!record
@@ -28,4 +29,15 @@ end
 
 def convert_date_time_array(date_time_array)
   return Time.parse(date_time_array.join(" "))
+end 
+
+def format_market_time(from, to)
+  opening_time = Time.parse(from)
+  closing_time = Time.parse(to)
+
+  if opening_time.to_date() === closing_time.to_date()
+    return "#{opening_time.strftime("%A %d %b %Y")} #{opening_time.strftime("%r")} - #{closing_time.strftime("%r")}"
+  else 
+    return "#{opening_time.strftime("%A %d %b %Y")} #{opening_time.strftime("%r")} - #{closing_time.strftime("%A %d %b %Y")} #{closing_time.strftime("%r")}"
+  end
 end 

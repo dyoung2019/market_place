@@ -32,6 +32,10 @@ get '/markets/:market_id' do
   insert_stalls_and_sale_items(@market_date)
   @view_stall_base_path = "/markets/#{market_id}/stalls"
 
+  @seller_account_path = "/markets/#{market_id}/seller"
+  @seller_log_in_path = "/markets/#{market_id}/login"
+  @seller_log_out_path = "/markets/#{market_id}/login"
+
   erb :'markets/view'
 end
 

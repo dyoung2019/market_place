@@ -1,25 +1,6 @@
 <h1><%= @market[:market_name] %></h1>
 <h2><%= @market[:market_description] %></h2>
 
-<% if logged_in? %>
-  <div>
-    <a href="/markets/<%= @market[:market_id] %>/seller">Seller</a>
-  </div>  
-  <div>
-    <form action="/markets/<%= @market[:market_id] %>/login" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <button>Logout</button>
-    </form>
-  </div>
-<% else %>
-  <div>
-    <a href="/markets/<%= @market[:market_id] %>/login">
-      Log On
-    </a>
-  </div>
-<% end %>
-
-
 <% if !!@market_date %>
   <%= erb :'market_dates/show' %>
 <% else %>

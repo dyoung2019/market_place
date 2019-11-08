@@ -10,13 +10,40 @@
 <body>
   <nav class="side-nav">
     <a class="close-nav-button">&times;</a>
-    <a href="/">Home</a>
+    <a href="/">About</a>
     <a href="/admin">Admin</a>
     <a href="/markets">Markets</a>
   </nav>
   <div class="page-content">
     <header class="page-header">
       <div class="open-nav-button">&#9776;</div>
+
+      <div class="nav-account-panel">
+        <% if logged_in? %>
+          <% if !!@seller_account_path %>
+            <div class="nav-account-container">
+              <a class="nav-account-button" href="<%= @seller_account_path %>">View Seller</a>
+            </div>
+          <% end %>
+          <% if !!@seller_log_out_path %>
+            <form class="nav-account-container" action="<%= @seller_log_out_path %>" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <button class="nav-account-button">Logout</button>
+            </form>
+          <% end %>
+        <% else %>
+          <% if !!@seller_sign_up_path %>
+            <div class="nav-account-container">
+              <a class="nav-account-button" href="<%= @seller_sign_up_path %>">Signup</a>
+            </div>
+          <% end %>
+          <% if !!@seller_log_in_path %>
+            <div class="nav-account-container">
+              <a class="nav-account-button" href="<%= @seller_log_in_path %>">Login</a>
+            </div>
+          <% end %>
+        <% end %> 
+      </div>
     </header>
     <main class="main-content">
       <%= yield %>

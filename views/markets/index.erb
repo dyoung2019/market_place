@@ -1,18 +1,32 @@
-<h1> All Markets </h1>
+<h1> Markets </h1>
 
 <% @markets.each do | market |%>
-  <div>
-    <a href="/markets/<%= market[:market_id] %>">
-      <%= market[:market_name] %>
-    </a>
-    <ul>
-    <% market[:market_dates].each do | date |  %>
-      <li>
-        <a href="/market_dates/<%= date[:market_date_id].to_i %>">
-          <%= date[:opening_time] %> - <%= date[:closing_time] %> 
+  <section class="market-section">
+    <h2 class="market-heading">
+      <a href="/markets/<%= market[:market_id] %>"><%= market[:market_name] %></a>
+    </h2>
+    <p class="market-section-details">
+      <%= market[:market_description] %>
+    </p>
+    <div class="tile-container">
+      <% 
+        dates = market[:market_dates] 
+        if !!dates && dates.length > 0
+      %>
+        <% dates.each do | date |  %>
+        <%
+          duration = format_market_time(date[:opening_time] , date[:closing_time])
+        %>
+        <a class="tile" href="/market_dates/<%= date[:market_date_id].to_i %>">
+          <h3><%= date[:date_name] %></h3>
+          <p class="market-info">Held at <%= date[:date_location] %> on <%= duration %></p>
         </a>
-      </li>
-    <% end %>
-    </ul>
-  </div>
+        <% end %>
+      <% else %>
+        <div class="tile no-tiles">
+          No market dates
+        </div>
+      <% end %>
+    </div>
+  </section>
 <% end %>

@@ -1,8 +1,7 @@
 <h1>Admin</h1>
 
 <section>
-  <h2>Markets</h2>
-  <a href="/markets">Markets</a>
+  <h2><a href="/markets">Markets</a></h2>
   <a class="action-button" href="/admin/markets/new">New Market</a>
   <a class="action-button" href="/admin/market_dates/new">New Market Date</a>
 
@@ -23,18 +22,6 @@
 
 <section>
   <h2>Sellers</h2>
-  <% if logged_in? %>
-  <div>
-    <a class="action-button" href="/admin/seller">View Seller</a>
-  </div>
-  <form action="/admin/login" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button class="action-button">Logout</button>
-  </form>
-  <% else %>
-  <a class="action-button" href="/sellers/signup">Signup</a>
-  <a class="action-button" href="/admin/login">Login</a>
-  <% end %>
 
   <div class="tile-container">
   <% if !!@markets && @markets.length > 0 %>
@@ -54,28 +41,23 @@
   </div>
 </section>
 
-<h2>Stalls</h2>
+<section>
+  <h2>Stalls</h2>
 
-<a href="/stalls/new">New Stall</a>
+  <div class="tile-container">
+  <% if !!@stalls && @stalls.length > 0 %>
 
-<%# DEBUG ONLY - REMOVE LATER %>
-<% @stalls.each do | stall | %>
-  <div>
-    <a href="/sellers/<%= stall[:seller_id] %>">
-      <%= stall[:stall_name] %>
-    </a>
-  </div>
-<% end %>
-
-<h2>Products</h2>
-
-<a href="/products/new">New Products</a>
-
-<%# DEBUG ONLY - REMOVE LATER %>
-<% @products.each do | product | %>
-  <div>
-    <a href="/sellers/<%= product[:product_id] %>">
-      <%= product[:product_name] %>
-    </a>
-  </div>
-<% end %>
+    <%# DEBUG ONLY - REMOVE LATER %>
+    <% @stalls.each do | stall | %>
+      <div class="tile">
+        <a href="/sellers/<%= stall[:seller_id] %>">
+          <%= stall[:stall_name] %>
+        </a>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="tile no-tiles">
+      No stalls found
+    </div>
+  <% end %>
+</section>

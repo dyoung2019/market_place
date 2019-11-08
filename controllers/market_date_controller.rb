@@ -7,7 +7,10 @@ get '/market_dates/:market_date_id' do
   market_date = find_one_market_date(market_date_id)
   insert_stalls_and_sale_items(market_date)
 
-
+  @seller_account_path = "/market_dates/#{market_date_id}/seller"
+  @seller_log_out_path = "/market_dates/#{market_date_id}/login"
+  # @seller_sign_up_path = '/seller/signup'
+  @seller_log_in_path = "/market_dates/#{market_date_id}/login"
   
   @market_date = market_date
   @view_stall_base_path = "/market_dates/#{market_date_id}/stalls"

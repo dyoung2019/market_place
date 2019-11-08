@@ -31,6 +31,7 @@ h1,
 h2,
 h3,
 h4,
+form,
 body {
   border: 0;
   margin: 0;
@@ -51,6 +52,15 @@ p {
   letter-spacing: -0.015em;
 }
 
+a {
+  color: var(--color-4);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .page-content {
   width: 100%;
 }
@@ -61,6 +71,7 @@ p {
 
 .page-header {
   /* height: 10vh; */
+  width: 100vw;
   background-color: var(--color-2);
   display: flex;
   flex-direction: row;
@@ -70,7 +81,59 @@ p {
 .page-header .open-nav-button {
   font-size: 1.5rem;
   padding: 0.5rem;
+  color: var(--color-dark);
   background-color: var(--color-5);
+  cursor: pointer;
+}
+
+.page-header .open-nav-button:hover {
+  color: var(--color-2);
+  transition: color 500ms;
+}
+
+.page-header .nav-account-panel {
+  display: flex;
+  align-items: center;
+  /* margin-right: 1rem; */
+}
+
+.page-header .nav-account-container {
+  border: 0;
+  background-color: var(--color-1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.page-header .nav-account-button {
+  /* /* margin: 0; */
+  /* flex-grow: 1; */
+
+  /* height: 2.5rem; */
+  border: none;
+  background-color: var(--color-1);
+  color: var(--color-dark);
+  /* text-transform: uppercase; */
+  font-size: 1.0rem;
+  line-height: 1.72rem;
+  padding: 0.25rem 1rem;
+  /* border-radius: 2.0rem; */
+  /* min-width: max-content; */
+  /* width: 100px; */
+  display: block;
+  text-align: center;
+  /* margin: 1.15rem 0; */
+  color: var(--color-2);
+  font-weight: 400;  
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  /* height: 100%; */
+}
+
+.page-header .nav-account-button:hover {
+  text-decoration: underline;
 }
 
 .main-content > section {
@@ -90,6 +153,22 @@ p {
 .main-content > h1 {
   font-weight: 700;
   font-size: 2.5rem;
+}
+
+.market-section {
+  background-color: var(--color-5);
+}
+
+.market-section > .market-section-details {
+  margin-bottom: 1.5rem;
+}
+
+.market-section > .market-heading {
+  padding-bottom: 1.5rem;
+}
+
+.market-section .tile .market-info {
+  padding: 1rem;
 }
 
 .hero-card {
@@ -133,21 +212,21 @@ p {
 
 .hero-card h2  {
   font-size: 2.0rem;
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
   margin-bottom: 1rem;
   padding: 0.8rem 1rem;
 }
 
 .hero-card h3  {
   font-size: 1.5rem;
-  margin-left: 0.75rem;
+  /* margin-left: 0.75rem; */
   margin-bottom: 0.75rem;
   padding: 0.4rem 0.75rem;
 }
 
 .hero-card h4 {
   font-size: 1.25rem;
-  margin-right: 0.625rem;
+  /* margin-right: 0.625rem; */
   margin-bottom: 0.625rem;
   padding: 0.2rem 0.625rem;
 }
@@ -267,6 +346,18 @@ p {
   transition: background-color 300ms;
 }
 
+.about-section h2 {
+  margin: 2rem 0;
+}
+
+.about-section h3 {
+  margin: 1.5rem 0;
+}
+
+.about-section h4 {
+  margin: 1rem 0;
+}
+
 /* https://www.w3schools.com/howto/howto_js_sidenav.asp */
 .side-nav {
   height: 100%; /* 100% Full-height */
@@ -303,6 +394,7 @@ p {
   right: 25px;
   font-size: 2.0rem;
   margin-left: 50px;
+  cursor: pointer;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
