@@ -3,20 +3,34 @@
 
 <%= erb :'sellers/details' %>
 
-<h3>Stalls</h3>
-<% if @register_stall_allowed %>
-<a class="action-button" href="/markets/<%= params[:market_id]%>/seller/stalls/new"> Register Stall</a>
-<% end %>
-
-<% if @stalls.length > 0 %>
-  <% @stalls.each do | stall | %>
-    <div>
-      <a href="/markets/<%= params[:market_id]%>/stalls/<%= stall[:stall_id] %>">
-        <%= stall[:stall_name] %>
-      </a>
-      <p><%= stall[:stall_location] %></p>
-    </div>
+<section>
+  <h3>Stalls</h3>
+  <% if @register_stall_allowed %>
+  <a class="action-button" href="/markets/<%= params[:market_id]%>/seller/stalls/new"> Register Stall</a>
   <% end %>
-<% else %>
-  <div>No stalls</div>
-<% end %>
+
+ <div class="tile-container">
+    <% if @stalls.length > 0 %>
+      <% @stalls.each do | stall | %>
+        <div class="tile">
+          <a href="/markets/<%= params[:market_id]%>/stalls/<%= stall[:stall_id] %>">
+            <%= stall[:stall_name] %>
+          </a>
+          <div class="text-column">
+            <p>
+              Location: <%= stall[:stall_location] %>
+            </p>
+            <p>
+            Opening Time: <%= stall[:opening_time] %>
+            </p>
+            <p>
+            Closing Time: <%= stall[:opening_time] %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div>No stalls</div>
+    <% end %>
+  </div>
+</section>

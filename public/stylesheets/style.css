@@ -266,6 +266,12 @@ a:hover {
   margin-left: 1.0rem;
 }
 
+.tile .text-column {
+  margin-left: 1.0rem;
+  display:flex;
+  flex-direction: column;
+}
+
 .edit-form {
   display: flex;
   flex-direction: column;
